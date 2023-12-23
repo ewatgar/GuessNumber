@@ -18,5 +18,7 @@ class ConfigActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         var intent: Intent = Intent(this, PlayActivity::class.java)
+        
+
     }
 }
