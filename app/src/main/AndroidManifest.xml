@@ -13,7 +13,7 @@
         android:theme="@style/Theme.GuessNumber"
         tools:targetApi="31">
         <activity
-            android:name=".ConfigActivity"
+            android:name=".ui.configactivity.ConfigActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,10 +22,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".EndPlayActivity"
+            android:name=".ui.EndPlayActivity"
             android:exported="false" />
         <activity
-            android:name=".PlayActivity"
+            android:name=".ui.PlayActivity"
             android:exported="false" />
     </application>
 
