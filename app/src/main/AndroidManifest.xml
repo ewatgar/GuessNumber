@@ -25,7 +25,7 @@
             android:name=".ui.EndPlayActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.PlayActivity"
+            android:name=".ui.playactivity.PlayActivity"
             android:exported="false" />
     </application>
 

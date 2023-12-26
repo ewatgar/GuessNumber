@@ -5,7 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.activity.viewModels
-import com.example.guessnumber.ui.PlayActivity
+import com.example.guessnumber.data.model.Info
+import com.example.guessnumber.ui.playactivity.PlayActivity
 import com.example.guessnumber.databinding.ActivityConfigBinding
 import com.example.guessnumber.ui.configactivity.usecase.ConfigState
 import com.example.guessnumber.ui.configactivity.usecase.ConfigViewModel
@@ -43,12 +44,8 @@ class ConfigActivity : AppCompatActivity() {
 
     private fun onSuccess() {
         var intent: Intent = Intent(this, PlayActivity::class.java)
+        intent.putExtra("info", Info(viewmodel.name.value!!, viewmodel.tries.value!!.toInt()))
         startActivity(intent)
-        /*
-        with(viewmodel) {
-
-        }*/
-
     }
 
     private fun setNameEmptyError() {

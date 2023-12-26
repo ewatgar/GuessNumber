@@ -1,4 +1,4 @@
-package com.example.guessnumber.ui
+package com.example.guessnumber.ui.playactivity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
