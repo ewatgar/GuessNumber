@@ -32,7 +32,7 @@
             android:id="@+id/tilGuess"
             android:layout_width="@dimen/til_width"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_medium"
+            android:layout_marginBottom="@dimen/margin_small"
             app:layout_constraintBottom_toTopOf="@+id/tvMessage"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

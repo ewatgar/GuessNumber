@@ -61,16 +61,31 @@ class PlayActivity : AppCompatActivity() {
         val intent: Intent = Intent(this, EndPlayActivity::class.java)
         val bundle: Bundle = Bundle()
         with(viewmodel){
+            bundle.putBoolean("success",true)
             bundle.putSerializable("info", info.value)
             bundle.putInt("currentTries",currentTries.value?:0)
+            bundle.putInt("solution",solution.value?:0)
         }
         intent.putExtras(bundle)
         startActivity(intent)
     }
 
     private fun setOutOfTriesError() {
-        //TODO
         binding.tvMessage.text = "Sin intentos"
+        binding.bCheck.text = "Terminar"
+        binding.bCheck.setOnClickListener { onFailure() }
+    }
+    private fun onFailure(){
+        val intent: Intent = Intent(this, EndPlayActivity::class.java)
+        val bundle: Bundle = Bundle()
+        with(viewmodel){
+            bundle.putBoolean("success",false)
+            bundle.putSerializable("info", info.value)
+            bundle.putInt("currentTries",currentTries.value?:0)
+            bundle.putInt("solution",solution.value?:0)
+        }
+        intent.putExtras(bundle)
+        startActivity(intent)
     }
 
     private fun setGuessEmptyError() {
