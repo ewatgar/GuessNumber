@@ -32,8 +32,8 @@
             android:id="@+id/tilGuess"
             android:layout_width="@dimen/til_width"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_small"
-            app:layout_constraintBottom_toTopOf="@+id/tvMessage"
+            android:layout_marginBottom="@dimen/margin_medium"
+            app:layout_constraintBottom_toTopOf="@+id/bCheck"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTitle">
@@ -52,14 +52,13 @@
             android:id="@+id/tvMessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_small"
-            android:text="@string/play_tv_message_text"
+            android:layout_marginTop="@dimen/margin_small"
             android:textSize="@dimen/tv_message_textsize"
-            app:layout_constraintBottom_toTopOf="@+id/bCheck"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tilGuess" />
+            app:layout_constraintTop_toBottomOf="@+id/bCheck"
+            tools:text="@string/play_tv_message_placeholder" />
 
         <Button
             android:id="@+id/bCheck"
@@ -67,12 +66,11 @@
             android:layout_height="wrap_content"
             android:text="@string/play_b_check_text"
             android:textSize="@dimen/button_textsize"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tvMessage"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/bRestart"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvMessage" />
+            app:layout_constraintTop_toBottomOf="@+id/tilGuess" />
 
         <Button
             android:id="@+id/bRestart"

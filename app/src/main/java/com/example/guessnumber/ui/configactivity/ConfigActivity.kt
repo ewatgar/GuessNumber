@@ -59,28 +59,28 @@ class ConfigActivity : AppCompatActivity() {
 
     private fun setNameEmptyError() {
         with(binding) {
-            tilName.error = getString(R.string.error_message_til_name_empty)
+            tilName.error = getString(R.string.error_til_name_empty)
             tilName.requestFocus()
         }
     }
 
     private fun setTriesEmptyError() {
         with(binding) {
-            tilTries.error = getString(R.string.error_message_til_integer_empty)
+            tilTries.error = getString(R.string.error_til_integer_empty)
             tilTries.requestFocus()
         }
     }
 
     private fun setTriesFormatError() {
         with(binding) {
-            tilTries.error = getString(R.string.error_message_til_integer_format)
+            tilTries.error = getString(R.string.error_til_integer_format)
             tilTries.requestFocus()
         }
     }
 
     private fun setTriesNotPositiveError() {
         with(binding) {
-            tilTries.error = getString(R.string.error_message_til_integer_not_positive)
+            tilTries.error = getString(R.string.error_til_integer_not_positive)
             tilTries.requestFocus()
         }
     }

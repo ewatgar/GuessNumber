@@ -23,7 +23,6 @@ import com.example.guessnumber.ui.playactivity.usecase.PlayState
 import com.example.guessnumber.ui.playactivity.usecase.PlayViewModel
 
 class PlayActivity : AppCompatActivity() {
-
     private var _binding:ActivityPlayBinding? = null
     private val binding get() = _binding!!
     private val viewmodel: PlayViewModel by viewModels()
@@ -45,83 +44,70 @@ class PlayActivity : AppCompatActivity() {
             viewmodel.checkState() }
         initTextWatcher()
 
+        binding.bRestart.setOnClickListener {
+
+        }
+
         viewmodel.getState().observe(this){
             when(it){
+                PlayState.NotCorrectError -> setNotCorrectError()
                 PlayState.OutOfTriesError -> setOutOfTriesError()
                 PlayState.GuessEmptyError -> setGuessEmptyError()
                 PlayState.GuessFormatError -> setGuessFormatError()
                 PlayState.GuessNotPositiveError -> setGuessNotPositiveError()
-                PlayState.NotCorrectError -> setNotCorrectError()
                 PlayState.Success -> onSuccess()
             }
         }
     }
 
     private fun onSuccess() {
-        val intent: Intent = Intent(this, EndPlayActivity::class.java)
-        val bundle: Bundle = Bundle()
-        with(viewmodel){
-            bundle.putBoolean("success",true)
-            bundle.putSerializable("info", info.value)
-            bundle.putInt("currentTries",currentTries.value?:0)
-            bundle.putInt("solution",solution.value?:0)
-        }
-        intent.putExtras(bundle)
-        startActivity(intent)
+        navigateToEndPlay(true)
     }
 
     private fun setOutOfTriesError() {
-        binding.tvMessage.text = "Sin intentos"
-        binding.bCheck.text = "Terminar"
+        binding.tvMessage.text = getString(R.string.error_tv_message_out_of_tries)
+        binding.bCheck.text = getString(R.string.play_b_finish_text)
         binding.bCheck.setOnClickListener { onFailure() }
     }
     private fun onFailure(){
-        val intent: Intent = Intent(this, EndPlayActivity::class.java)
-        val bundle: Bundle = Bundle()
-        with(viewmodel){
-            bundle.putBoolean("success",false)
-            bundle.putSerializable("info", info.value)
-            bundle.putInt("currentTries",currentTries.value?:0)
-            bundle.putInt("solution",solution.value?:0)
-        }
-        intent.putExtras(bundle)
-        startActivity(intent)
+        navigateToEndPlay(false)
     }
 
     private fun setGuessEmptyError() {
         with(binding) {
-            tilGuess.error = getString(R.string.error_message_til_integer_empty)
+            tilGuess.error = getString(R.string.error_til_integer_empty)
             tilGuess.requestFocus()
         }
     }
 
     private fun setGuessFormatError() {
         with(binding) {
-            tilGuess.error = getString(R.string.error_message_til_integer_format)
+            tilGuess.error = getString(R.string.error_til_integer_format)
             tilGuess.requestFocus()
         }
     }
 
     private fun setGuessNotPositiveError() {
         with(binding) {
-            tilGuess.error = getString(R.string.error_message_til_integer_not_positive)
+            tilGuess.error = getString(R.string.error_til_integer_not_positive)
             tilGuess.requestFocus()
         }
     }
 
     private fun setNotCorrectError() {
         when{
-            viewmodel.guess.value!!.toInt() > viewmodel.solution.value!!.toInt() -> binding.tvMessage.text = getString(R.string.error_message_tv_message_greater_than,viewmodel.guess.value!!.toInt())
-            viewmodel.guess.value!!.toInt() < viewmodel.solution.value!!.toInt() -> binding.tvMessage.text = getString(R.string.error_message_tv_message_less_than,viewmodel.guess.value!!.toInt())
+            viewmodel.guess.value!!.toInt() > viewmodel.solution.value!!.toInt() -> binding.tvMessage.text = getString(R.string.error_tv_message_greater_than,viewmodel.guess.value!!.toInt())
+            viewmodel.guess.value!!.toInt() < viewmodel.solution.value!!.toInt() -> binding.tvMessage.text = getString(R.string.error_tv_message_less_than,viewmodel.guess.value!!.toInt())
         }
-       viewmodel.decrementTries()
+       viewmodel.incrementTries()
     }
 
     private fun initViewModelInfo() {
         val intentInfo: Info = intent.getSerializableExtra("info") as Info
         with(viewmodel){
             info.value = intentInfo
-            currentTries.value = intentInfo.maxTries
+            //TODO: DUDA: no se porque, tengo que ponerlo como -1 en vez de 0 para que no se deje tener un intento extra en el juego
+            currentTries.value = -1
             generateRandomSolution()
         }
     }
@@ -131,5 +117,17 @@ class PlayActivity : AppCompatActivity() {
             val twGuess = ErrorTextWatcher(tilGuess) //textWatcher
             edGuess.addTextChangedListener(twGuess)
         }
+    }
+
+    private fun navigateToEndPlay(success:Boolean){
+        val intent: Intent = Intent(this, EndPlayActivity::class.java)
+        val bundle: Bundle = Bundle()
+        with(viewmodel){
+            bundle.putBoolean("success",success)
+            bundle.putInt("currentTries",currentTries.value!!)
+            bundle.putInt("solution",solution.value!!)
+        }
+        intent.putExtras(bundle)
+        startActivity(intent)
     }
 }

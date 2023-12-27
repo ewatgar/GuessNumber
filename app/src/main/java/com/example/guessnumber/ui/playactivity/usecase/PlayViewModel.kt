@@ -23,13 +23,13 @@ class PlayViewModel :ViewModel(){
         solution.value = Random.nextInt(1, 100 + 1)
     }
 
-    fun decrementTries(){
-        currentTries.value = currentTries.value!!.toInt() - 1
+    fun incrementTries(){
+        currentTries.value = currentTries.value!!.toInt()+1
     }
 
     fun checkState(){
         when{
-            currentTries.value == null || currentTries.value == 0 -> state.value = PlayState.OutOfTriesError
+            currentTries.value == info.value?.maxTries -> state.value = PlayState.OutOfTriesError
             TextUtils.isEmpty(guess.value) -> state.value = PlayState.GuessEmptyError
             guess.value?.toIntOrNull() == null -> state.value = PlayState.GuessFormatError
             guess.value!!.toInt() <= 0 -> state.value = PlayState.GuessNotPositiveError
