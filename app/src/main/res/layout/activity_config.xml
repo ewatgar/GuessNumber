@@ -19,9 +19,9 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:text="Adivina el Número"
-            android:textSize="30sp"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:text="@string/config_tv_title_text"
+            android:textSize="@dimen/tv_title_textsize"
             app:layout_constraintBottom_toTopOf="@+id/tilName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -30,9 +30,9 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilName"
-            android:layout_width="300dp"
+            android:layout_width="@dimen/til_width"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="@dimen/margin_medium"
             app:layout_constraintBottom_toTopOf="@+id/tilTries"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -42,15 +42,15 @@
                 android:id="@+id/edName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nombre"
+                android:hint="@string/config_ed_name_hint"
                 android:text="@={viewmodel.name}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilTries"
-            android:layout_width="300dp"
+            android:layout_width="@dimen/til_width"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="@dimen/margin_medium"
             app:layout_constraintBottom_toBottomOf="@+id/bPlay"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -60,7 +60,9 @@
                 android:id="@+id/edTries"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Número de intentos"
+                android:digits="@string/ed_number_digits"
+                android:hint="@string/config_ed_tries_hint"
+                android:inputType="number"
                 android:text="@={viewmodel.tries}" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -68,8 +70,8 @@
             android:id="@+id/bPlay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="¡A jugar!"
-            android:textSize="18sp"
+            android:text="@string/config_b_play_text"
+            android:textSize="@dimen/button_textsize"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -1,3 +1,10 @@
+/**
+ * ConfigActivity
+ * Tiene la función de preguntarle al usuario información antes de empezar el juego, en concreto,
+ * se pregunta por su nombre y el número de intentos que tiene para adivinar un número aleatorio
+ * entre el 1 y el 100
+ */
+
 package com.example.guessnumber.ui.configactivity
 
 import android.content.Intent

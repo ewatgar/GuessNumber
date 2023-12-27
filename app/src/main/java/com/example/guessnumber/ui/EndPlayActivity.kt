@@ -1,3 +1,9 @@
+/**
+ * EndPlayActivity
+ * Tiene la función de enseñar el número de intentos que ha necesito el usuario para adivinar el
+ * número, o por el contrario la solución si no ha podido adiviarlo
+ */
+
 package com.example.guessnumber.ui
 
 import androidx.appcompat.app.AppCompatActivity
