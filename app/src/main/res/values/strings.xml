@@ -1,14 +1,24 @@
 <resources>
     <string name="app_name">GuessNumber</string>
+
     <string name="config_tv_title_text">Introduce los datos</string>
     <string name="config_ed_name_hint">Nombre</string>
     <string name="config_ed_tries_hint">Número de intentos</string>
     <string name="config_b_play_text">¡A jugar!</string>
+
     <string name="play_tv_title_text">Adivina el Número</string>
     <string name="play_tv_message_text">Mensaje</string>
     <string name="play_ed_guess_hint">Introduce tu respuesta</string>
     <string name="play_b_check_text">Verificar</string>
     <string name="play_b_restart_text">Reiniciar</string>
     <string name="play_b_finish_text">Terminar</string>
+
     <string name="ed_number_digits">0123456789.</string>
+
+    <string name="error_message_til_name_empty">Introduce tu nombre</string>
+    <string name="error_message_til_integer_empty">Introduce un número de intentos</string>
+    <string name="error_message_til_integer_format">Introduce un número válido</string>
+    <string name="error_message_til_integer_not_positive">El número debe ser mayor que 0</string>
+    <string name="error_message_tv_message_greater_than">%d es mayor que la solución</string>
+    <string name="error_message_tv_message_less_than">%d es menor que la solución</string>
 </resources>

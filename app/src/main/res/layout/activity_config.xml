@@ -63,7 +63,7 @@
                 android:digits="@string/ed_number_digits"
                 android:hint="@string/config_ed_tries_hint"
                 android:inputType="number"
-                android:text="@={viewmodel.tries}" />
+                android:text="@={viewmodel.maxTries}" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button

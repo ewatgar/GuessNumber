@@ -11,12 +11,12 @@ const val TAG = "ConfigViewModel"
 
 class ConfigViewModel: ViewModel() {
     /* TODO: DUDA: no puedo usar info porque double deberia ser string para poder verificarse
-        si está vacío o si es double.Podría cambiar el dataclass a tries: String
+        si está vacío o si es double.Podría cambiar el dataclass a maxTries: String
     */
     //var info = MutableLiveData<Info>()
 
     var name = MutableLiveData<String>()
-    var tries = MutableLiveData<String>()
+    var maxTries = MutableLiveData<String>()
 
     private var state = MutableLiveData<ConfigState>()
 
@@ -27,9 +27,9 @@ class ConfigViewModel: ViewModel() {
     fun checkState() {
         when {
             TextUtils.isEmpty(name.value) -> state.value = ConfigState.NameEmptyError
-            TextUtils.isEmpty(tries.value) -> state.value = ConfigState.TriesEmptyError
-            tries.value?.toIntOrNull() == null -> state.value = ConfigState.TriesFormatError
-            tries.value!!.toInt() <= 0 -> state.value = ConfigState.TriesNotPositiveError
+            TextUtils.isEmpty(maxTries.value) -> state.value = ConfigState.TriesEmptyError
+            maxTries.value?.toIntOrNull() == null -> state.value = ConfigState.TriesFormatError
+            maxTries.value!!.toInt() <= 0 -> state.value = ConfigState.TriesNotPositiveError
             else -> state.value = ConfigState.Success
         }
     }

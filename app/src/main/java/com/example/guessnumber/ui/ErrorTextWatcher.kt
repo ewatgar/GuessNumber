@@ -1,11 +1,10 @@
-package com.example.guessnumber.ui.configactivity
+package com.example.guessnumber.ui
 
 import android.text.Editable
 import android.text.TextWatcher
 import com.google.android.material.textfield.TextInputLayout
 
-//TODO: DUDA: porque se escribe private val
-class ConfigTextWatcher(private val til:TextInputLayout):TextWatcher {
+class ErrorTextWatcher(private val til: TextInputLayout): TextWatcher {
     override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
         //no se implementa
     }

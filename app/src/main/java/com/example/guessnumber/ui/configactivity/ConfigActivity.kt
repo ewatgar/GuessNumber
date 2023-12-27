@@ -12,9 +12,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.activity.viewModels
+import com.example.guessnumber.R
 import com.example.guessnumber.data.model.Info
 import com.example.guessnumber.ui.playactivity.PlayActivity
 import com.example.guessnumber.databinding.ActivityConfigBinding
+import com.example.guessnumber.ui.ErrorTextWatcher
 import com.example.guessnumber.ui.configactivity.usecase.ConfigState
 import com.example.guessnumber.ui.configactivity.usecase.ConfigViewModel
 
@@ -51,42 +53,42 @@ class ConfigActivity : AppCompatActivity() {
 
     private fun onSuccess() {
         var intent: Intent = Intent(this, PlayActivity::class.java)
-        intent.putExtra("info", Info(viewmodel.name.value!!, viewmodel.tries.value!!.toInt()))
+        intent.putExtra("info", Info(viewmodel.name.value!!, viewmodel.maxTries.value!!.toInt()))
         startActivity(intent)
     }
 
     private fun setNameEmptyError() {
         with(binding) {
-            tilName.error = "Introduce tu nombre"
+            tilName.error = getString(R.string.error_message_til_name_empty)
             tilName.requestFocus()
         }
     }
 
     private fun setTriesEmptyError() {
         with(binding) {
-            tilTries.error = "Introduce un número de intentos"
+            tilTries.error = getString(R.string.error_message_til_integer_empty)
             tilTries.requestFocus()
         }
     }
 
     private fun setTriesFormatError() {
         with(binding) {
-            tilTries.error = "Introduce un número válido"
+            tilTries.error = getString(R.string.error_message_til_integer_format)
             tilTries.requestFocus()
         }
     }
 
     private fun setTriesNotPositiveError() {
         with(binding) {
-            tilTries.error = "El número debe ser mayor que 0"
+            tilTries.error = getString(R.string.error_message_til_integer_not_positive)
             tilTries.requestFocus()
         }
     }
 
     private fun initTextWatcher() {
         with(binding) {
-            val twName = ConfigTextWatcher(tilName) //textWatcher
-            val twTries = ConfigTextWatcher(tilTries)
+            val twName = ErrorTextWatcher(tilName) //textWatcher
+            val twTries = ErrorTextWatcher(tilTries)
             edName.addTextChangedListener(twName)
             edTries.addTextChangedListener(twTries)
         }
