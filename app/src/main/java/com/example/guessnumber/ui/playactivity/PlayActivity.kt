@@ -11,6 +11,7 @@ package com.example.guessnumber.ui.playactivity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import androidx.activity.viewModels
 import com.example.guessnumber.R
@@ -37,7 +38,11 @@ class PlayActivity : AppCompatActivity() {
 
         initViewModelInfo()
 
-        binding.bCheck.setOnClickListener { viewmodel.checkState() }
+        binding.bCheck.setOnClickListener {
+            Log.d("PlayActivity","guess: "+viewmodel.guess.value)
+            Log.d("PlayActivity","currentTries: "+viewmodel.currentTries.value)
+            Log.d("PlayActivity","solution: "+viewmodel.solution.value)
+            viewmodel.checkState() }
         initTextWatcher()
 
         viewmodel.getState().observe(this){
@@ -94,6 +99,7 @@ class PlayActivity : AppCompatActivity() {
             viewmodel.guess.value!!.toInt() > viewmodel.solution.value!!.toInt() -> binding.tvMessage.text = getString(R.string.error_message_tv_message_greater_than,viewmodel.guess.value!!.toInt())
             viewmodel.guess.value!!.toInt() < viewmodel.solution.value!!.toInt() -> binding.tvMessage.text = getString(R.string.error_message_tv_message_less_than,viewmodel.guess.value!!.toInt())
         }
+       viewmodel.decrementTries()
     }
 
     private fun initViewModelInfo() {
