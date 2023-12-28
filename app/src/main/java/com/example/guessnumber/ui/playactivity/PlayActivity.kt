@@ -23,7 +23,7 @@ import com.example.guessnumber.ui.playactivity.usecase.PlayState
 import com.example.guessnumber.ui.playactivity.usecase.PlayViewModel
 
 class PlayActivity : AppCompatActivity() {
-    private var _binding:ActivityPlayBinding? = null
+    private var _binding: ActivityPlayBinding? = null
     private val binding get() = _binding!!
     private val viewmodel: PlayViewModel by viewModels()
 
@@ -36,25 +36,25 @@ class PlayActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
 
         initViewModelInfo()
+        debug("init")
+
+        binding.bRestart.setOnClickListener { onRestartGame() }
 
         binding.bCheck.setOnClickListener {
-            Log.d("PlayActivity","guess: "+viewmodel.guess.value)
-            Log.d("PlayActivity","currentTries: "+viewmodel.currentTries.value)
-            Log.d("PlayActivity","solution: "+viewmodel.solution.value)
-            viewmodel.checkState() }
-        initTextWatcher()
-
-        binding.bRestart.setOnClickListener {
-
+            debug("check")
+            viewmodel.checkState()
         }
 
-        viewmodel.getState().observe(this){
-            when(it){
-                PlayState.NotCorrectError -> setNotCorrectError()
+        initTextWatcher()
+
+
+        viewmodel.getState().observe(this) {
+            when (it) {
                 PlayState.OutOfTriesError -> setOutOfTriesError()
                 PlayState.GuessEmptyError -> setGuessEmptyError()
                 PlayState.GuessFormatError -> setGuessFormatError()
                 PlayState.GuessNotPositiveError -> setGuessNotPositiveError()
+                PlayState.NotCorrectError -> setNotCorrectError()
                 PlayState.Success -> onSuccess()
             }
         }
@@ -69,7 +69,8 @@ class PlayActivity : AppCompatActivity() {
         binding.bCheck.text = getString(R.string.play_b_finish_text)
         binding.bCheck.setOnClickListener { onFailure() }
     }
-    private fun onFailure(){
+
+    private fun onFailure() {
         navigateToEndPlay(false)
     }
 
@@ -95,19 +96,21 @@ class PlayActivity : AppCompatActivity() {
     }
 
     private fun setNotCorrectError() {
-        when{
-            viewmodel.guess.value!!.toInt() > viewmodel.solution.value!!.toInt() -> binding.tvMessage.text = getString(R.string.error_tv_message_greater_than,viewmodel.guess.value!!.toInt())
-            viewmodel.guess.value!!.toInt() < viewmodel.solution.value!!.toInt() -> binding.tvMessage.text = getString(R.string.error_tv_message_less_than,viewmodel.guess.value!!.toInt())
+        when {
+            viewmodel.guess.value!!.toInt() > viewmodel.solution.value!!.toInt() -> binding.tvMessage.text =
+                getString(R.string.error_tv_message_greater_than, viewmodel.guess.value!!.toInt())
+
+            viewmodel.guess.value!!.toInt() < viewmodel.solution.value!!.toInt() -> binding.tvMessage.text =
+                getString(R.string.error_tv_message_less_than, viewmodel.guess.value!!.toInt())
         }
-       viewmodel.incrementTries()
+        viewmodel.decrementTries()
     }
 
     private fun initViewModelInfo() {
         val intentInfo: Info = intent.getSerializableExtra("info") as Info
-        with(viewmodel){
+        with(viewmodel) {
             info.value = intentInfo
-            //TODO: DUDA: no se porque, tengo que ponerlo como -1 en vez de 0 para que no se deje tener un intento extra en el juego
-            currentTries.value = -1
+            currentTries.value = intentInfo.maxTries
             generateRandomSolution()
         }
     }
@@ -119,15 +122,38 @@ class PlayActivity : AppCompatActivity() {
         }
     }
 
-    private fun navigateToEndPlay(success:Boolean){
-        val intent: Intent = Intent(this, EndPlayActivity::class.java)
-        val bundle: Bundle = Bundle()
-        with(viewmodel){
-            bundle.putBoolean("success",success)
-            bundle.putInt("currentTries",currentTries.value!!)
-            bundle.putInt("solution",solution.value!!)
+    private fun navigateToEndPlay(success: Boolean) {
+        val intent = Intent(this, EndPlayActivity::class.java)
+        val bundle = Bundle()
+        with(viewmodel) {
+            bundle.putBoolean("success", success)
+            bundle.putSerializable("info", info.value)
+            bundle.putInt("currentTries", currentTries.value!!)
+            bundle.putInt("solution", solution.value!!)
         }
         intent.putExtras(bundle)
         startActivity(intent)
+    }
+
+    private fun onRestartGame() {
+        with(viewmodel){
+            generateRandomSolution()
+            currentTries.value = info.value!!.maxTries
+        }
+        with(binding) {
+            bCheck.text = getString(R.string.play_b_check_text)
+            tvMessage.text = ""
+        }
+        debug("restart")
+        binding.bCheck.setOnClickListener {
+            debug("check after restart")
+            viewmodel.checkState()
+        }
+    }
+
+    private fun debug(string:String){
+        Log.d("PlayActivity", "$string -----------------------")
+        Log.d("PlayActivity", "currentTries: " + viewmodel.currentTries.value)
+        Log.d("PlayActivity", "solution: " + viewmodel.solution.value)
     }
 }

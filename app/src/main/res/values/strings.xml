@@ -14,8 +14,8 @@
     <string name="play_b_finish_text">Terminar</string>
 
     <string name="endplay_tv_final_message_placeholder">mensaje final</string>
-    <string name="endplay_tv_final_message_success">¡Enhorabuena! Has adivinado el número %d en %d intento/s</string>
-    <string name="endplay_tv_final_message_failure">El número era %d, suerte para la próxima</string>
+    <string name="endplay_tv_final_message_success">¡Enhorabuena %s! Has adivinado el número %d\nen %d intento/s</string>
+    <string name="endplay_tv_final_message_failure">Lo siento %s, el número era %d.\n¡Suerte para la próxima!</string>
 
     <string name="ed_number_digits">0123456789.</string>
 

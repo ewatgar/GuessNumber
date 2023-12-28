@@ -28,11 +28,12 @@ class EndPlayActivity : AppCompatActivity() {
     private fun initFinalMessage(){
         val bundle = intent.extras!!
         val success = bundle.getBoolean("success")
+        val info = bundle.getSerializable("info") as Info
         val currentTries = bundle.getInt("currentTries")
         val solution = bundle.getInt("solution")
         when(success){
-            true -> binding.tvFinalMessage.text = getString(R.string.endplay_tv_final_message_success,solution,currentTries)
-            false -> binding.tvFinalMessage.text = getString(R.string.endplay_tv_final_message_failure,solution)
+            true -> binding.tvFinalMessage.text = getString(R.string.endplay_tv_final_message_success,info.name,solution,info.maxTries-currentTries)
+            false -> binding.tvFinalMessage.text = getString(R.string.endplay_tv_final_message_failure,info.name,solution)
         }
     }
 }
