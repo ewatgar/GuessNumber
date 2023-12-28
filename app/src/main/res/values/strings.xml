@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GuessNumber</string>
+    <string name="app_name" translatable="false">GuessNumber</string>
 
     <string name="config_tv_title_text">Introduce los datos</string>
     <string name="config_ed_name_hint">Nombre</string>
@@ -17,7 +17,7 @@
     <string name="endplay_tv_final_message_success">¡Enhorabuena %s! Has adivinado el número %d\nen %d intento/s</string>
     <string name="endplay_tv_final_message_failure">Lo siento %s, el número era %d.\n¡Suerte para la próxima!</string>
 
-    <string name="ed_number_digits">0123456789.</string>
+    <string name="ed_number_digits" translatable="false">0123456789.</string>
 
     <string name="error_til_name_empty">Introduce tu nombre</string>
     <string name="error_til_integer_empty">Introduce un número de intentos</string>
