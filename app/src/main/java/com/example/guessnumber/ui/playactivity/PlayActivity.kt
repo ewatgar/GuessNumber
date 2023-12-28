@@ -41,12 +41,10 @@ class PlayActivity : AppCompatActivity() {
         binding.bRestart.setOnClickListener { onRestartGame() }
 
         binding.bCheck.setOnClickListener {
-            debug("check")
             viewmodel.checkState()
         }
 
         initTextWatcher()
-
 
         viewmodel.getState().observe(this) {
             when (it) {
@@ -96,14 +94,15 @@ class PlayActivity : AppCompatActivity() {
     }
 
     private fun setNotCorrectError() {
+        viewmodel.decrementTries()
+        debug("notcorrect")
         when {
             viewmodel.guess.value!!.toInt() > viewmodel.solution.value!!.toInt() -> binding.tvMessage.text =
-                getString(R.string.error_tv_message_greater_than, viewmodel.guess.value!!.toInt())
+                getString(R.string.error_tv_message_greater_than, viewmodel.guess.value!!.toInt(), viewmodel.currentTries.value!!)
 
             viewmodel.guess.value!!.toInt() < viewmodel.solution.value!!.toInt() -> binding.tvMessage.text =
-                getString(R.string.error_tv_message_less_than, viewmodel.guess.value!!.toInt())
+                getString(R.string.error_tv_message_less_than, viewmodel.guess.value!!.toInt(), viewmodel.currentTries.value!!)
         }
-        viewmodel.decrementTries()
     }
 
     private fun initViewModelInfo() {

@@ -17,7 +17,7 @@
     <string name="error_til_integer_empty">Enter number of tries</string>
     <string name="error_til_integer_format">Enter a valid number</string>
     <string name="error_til_integer_not_positive">The number has to be greater than 0</string>
-    <string name="error_tv_message_greater_than">%d is greater than the solution</string>
-    <string name="error_tv_message_less_than">%d is less than the solution</string>
+    <string name="error_tv_message_greater_than">%d is greater than the solution.\nTries: %d</string>
+    <string name="error_tv_message_less_than">%d is less than the solution.\nTries: %d</string>
     <string name="error_tv_message_out_of_tries">Out of tries</string>
 </resources>

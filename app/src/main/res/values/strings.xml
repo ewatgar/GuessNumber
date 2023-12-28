@@ -23,7 +23,7 @@
     <string name="error_til_integer_empty">Introduce un número de intentos</string>
     <string name="error_til_integer_format">Introduce un número válido</string>
     <string name="error_til_integer_not_positive">El número debe ser mayor que 0</string>
-    <string name="error_tv_message_greater_than">%d es mayor que la solución</string>
-    <string name="error_tv_message_less_than">%d es menor que la solución</string>
+    <string name="error_tv_message_greater_than">%d es mayor que la solución.\nIntentos: %d</string>
+    <string name="error_tv_message_less_than">%d es menor que la solución.\nIntentos: %d</string>
     <string name="error_tv_message_out_of_tries">Sin intentos</string>
 </resources>

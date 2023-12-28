@@ -24,12 +24,13 @@ class PlayViewModel :ViewModel(){
     }
 
     fun decrementTries(){
-        currentTries.value = currentTries.value!!.toInt() - 1
+        currentTries.value = (currentTries.value!!.toInt() - 1)
     }
 
     fun checkState(){
         when{
-            currentTries.value == 0 -> state.value = PlayState.OutOfTriesError
+            //TODO: DUDA: tengo que igualarlo a 1 en vez de 0 para que funcione bien el numero de intentos y no se por que
+            currentTries.value == 1 && guess.value!!.toInt() != solution.value -> state.value = PlayState.OutOfTriesError
             TextUtils.isEmpty(guess.value) -> state.value = PlayState.GuessEmptyError
             guess.value?.toIntOrNull() == null -> state.value = PlayState.GuessFormatError
             guess.value!!.toInt() <= 0 -> state.value = PlayState.GuessNotPositiveError
