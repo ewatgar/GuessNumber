@@ -11,8 +11,8 @@
     <string name="play_b_restart_text">Restart</string>
     <string name="play_b_finish_text">Finish</string>
     <string name="endplay_tv_final_message_placeholder">final message</string>
-    <string name="endplay_tv_final_message_success">Congrats %s! You\'ve guessed the number %d\\nin %d tries</string>
-    <string name="endplay_tv_final_message_failure">Sorry %s, the number was %d.\\nGood luck next time!</string>
+    <string name="endplay_tv_final_message_success">Congrats %s! You\'ve guessed the number %d\nin %d tries</string>
+    <string name="endplay_tv_final_message_failure">Sorry %s, the number was %d.\nGood luck next time!</string>
     <string name="error_til_name_empty">Enter your name</string>
     <string name="error_til_integer_empty">Enter number of tries</string>
     <string name="error_til_integer_format">Enter a valid number</string>
