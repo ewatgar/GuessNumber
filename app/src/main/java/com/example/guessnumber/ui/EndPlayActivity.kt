@@ -31,7 +31,7 @@ class EndPlayActivity : AppCompatActivity() {
         val info = bundle.getSerializable("info") as Info
         val currentTries = bundle.getInt("currentTries")
         val solution = bundle.getInt("solution")
-        val triesUsed: Int = info.maxTries-currentTries
+        val triesUsed: Int = info.maxTries-currentTries+1
         when(success){
             true -> binding.tvFinalMessage.text = getString(R.string.endplay_tv_final_message_success,info.name,solution,triesUsed)
             false -> binding.tvFinalMessage.text = getString(R.string.endplay_tv_final_message_failure,info.name,solution)
