@@ -34,12 +34,9 @@ class ConfigActivity : AppCompatActivity() {
         binding.viewmodel = this.viewmodel
         binding.lifecycleOwner = this
 
-        //TODO: DUDA: utilizar viewmodel valor sin layout xml
-
         binding.bPlay.setOnClickListener { viewmodel.checkState() }
         initTextWatcher()
 
-        //TODO: DUDA: porque "this" y no "viewLifecycleOwner"
         viewmodel.getState().observe(this) {
             when (it) {
                 ConfigState.NameEmptyError -> setNameEmptyError()

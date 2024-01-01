@@ -29,7 +29,6 @@ class PlayViewModel :ViewModel(){
 
     fun checkState(){
         when{
-            //TODO: DUDA: tengo que igualarlo a 1 en vez de 0 para que funcione bien el numero de intentos y no se por que
             currentTries.value == 1 && guess.value!!.toInt() != solution.value -> state.value = PlayState.OutOfTriesError
             TextUtils.isEmpty(guess.value) -> state.value = PlayState.GuessEmptyError
             guess.value?.toIntOrNull() == null -> state.value = PlayState.GuessFormatError

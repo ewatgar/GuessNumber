@@ -10,11 +10,6 @@ import com.example.guessnumber.data.model.Info
 const val TAG = "ConfigViewModel"
 
 class ConfigViewModel: ViewModel() {
-    /* TODO: DUDA: no puedo usar info porque double deberia ser string para poder verificarse
-        si está vacío o si es double.Podría cambiar el dataclass a maxTries: String
-    */
-    //var info = MutableLiveData<Info>()
-
     var name = MutableLiveData<String>()
     var maxTries = MutableLiveData<String>()
 
