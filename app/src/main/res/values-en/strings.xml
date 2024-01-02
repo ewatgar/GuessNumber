@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="config_tv_title_text">Enter the data</string>
+    <string name="config_tv_title_text">Enter your info</string>
     <string name="config_ed_name_hint">Name</string>
     <string name="config_ed_tries_hint">Numbes of tries</string>
     <string name="config_b_play_text">Play!</string>

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">GuessNumber</string>
 
-    <string name="config_tv_title_text">Introduce los datos</string>
+    <string name="config_tv_title_text">Introduce tus datos</string>
     <string name="config_ed_name_hint">Nombre</string>
     <string name="config_ed_tries_hint">Número de intentos</string>
     <string name="config_b_play_text">¡A jugar!</string>
